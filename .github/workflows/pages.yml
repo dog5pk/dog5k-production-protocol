@@ -27,8 +27,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Configure Pages
+      - name: Configure and initialize Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload website artifact
         uses: actions/upload-pages-artifact@v3
