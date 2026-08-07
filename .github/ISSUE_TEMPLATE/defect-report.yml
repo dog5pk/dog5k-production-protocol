@@ -1,0 +1,55 @@
+name: DPP defect report
+description: Report a contradiction, ambiguity, broken link, or reproducible operational failure.
+title: "[Defect]: "
+labels:
+  - defect
+body:
+  - type: markdown
+    attributes:
+      value: "Report what failed, not merely what felt strange. Evidence saves everyone time."
+  - type: input
+    id: location
+    attributes:
+      label: Affected principle, criterion, or file
+      placeholder: "Example: Principle VI or operational/DPP-v1.3-Operational.md"
+    validations:
+      required: true
+  - type: textarea
+    id: defect
+    attributes:
+      label: Exact defect
+      description: Explain the contradiction, ambiguity, broken behavior, or inaccurate material.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction or evidence
+      description: Provide exact prompts, outputs, links, steps, or other evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Operational impact
+      description: Explain what can go wrong if this remains unchanged.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+      description: Provide complete replacement wording when practical.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I reviewed the current Reader and Operational editions.
+          required: true
+        - label: I searched existing issues for the same defect.
+          required: true
+        - label: I distinguished observation from inference.
+          required: true
