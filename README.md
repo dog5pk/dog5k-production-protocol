@@ -17,6 +17,7 @@ DPP requires correctness, completion, evidence, honest uncertainty, disciplined 
 
 | Resource | Purpose |
 |---|---|
+| [Whitepaper](whitepaper/DPP-Whitepaper-v1.0.md) | Design rationale, operating model, compliance framework, limitations, and research agenda |
 | [Reader Edition](reader/DPP-v1.3-Reader.md) | The complete public standard with explanations and acceptance criteria |
 | [Operational Edition](operational/DPP-v1.3-Operational.md) | A compact version intended for use as AI operating instructions |
 | [Quick Start](docs/QUICKSTART.md) | Apply DPP to a real task in minutes |
@@ -57,6 +58,7 @@ It is a standard against which the quality, completeness, and honesty of human-A
 
 ```text
 .
+├── whitepaper/      # Design rationale, evaluation framework, and research agenda
 ├── reader/          # Complete explanatory standard
 ├── operational/     # Direct-use operating instructions
 ├── docs/            # Adoption and reference guidance
