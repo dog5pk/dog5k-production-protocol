@@ -2,6 +2,19 @@
 
 All material changes to the Dog5pk Production Protocol are documented here.
 
+## [Unreleased]
+
+### Repository
+- Rebuilt the public repository front page and removed broken references.
+- Added the complete v1.3 Operational Edition.
+- Added CC BY 4.0 licensing and machine-readable citation metadata.
+- Added governance, semantic versioning, contribution, and roadmap documents.
+- Added a quick-start adoption guide.
+- Added a reproducible control-versus-DPP benchmark protocol and submission template.
+- Added structured defect-report and change-proposal issue forms.
+
+These repository additions do not alter the normative meaning of DPP v1.3.
+
 ## [1.3] - 2026-07-25
 
 ### Added
