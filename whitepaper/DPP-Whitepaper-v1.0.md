@@ -806,9 +806,9 @@ The canonical DPP repository contains:
 - version history; and
 - the public DPP website.
 
-Repository: `github.com/dog5pk/dog5k-production-protocol`
+Repository: `github.com/dog5pk/dog5pk-production-protocol`
 
-Website: `dog5pk.github.io/dog5k-production-protocol/`
+Website: `dog5pk.github.io/dog5pk-production-protocol/`
 
 ---
 
