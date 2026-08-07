@@ -1,0 +1,66 @@
+name: DPP change proposal
+description: Propose a documented improvement to the standard or its supporting material.
+title: "[Proposal]: "
+labels:
+  - proposal
+body:
+  - type: input
+    id: affected
+    attributes:
+      label: Affected principle, criterion, or document
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Demonstrated problem
+      description: Describe the defect or operational need. Preference alone is insufficient.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or reproducible example
+    validations:
+      required: true
+  - type: textarea
+    id: wording
+    attributes:
+      label: Complete proposed wording or change
+    validations:
+      required: true
+  - type: dropdown
+    id: class
+    attributes:
+      label: Proposed change class
+      options:
+        - Editorial correction
+        - Clarification
+        - Compatible normative change
+        - Incompatible normative change
+        - Benchmark or adoption guidance
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and version impact
+    validations:
+      required: true
+  - type: textarea
+    id: evaluation
+    attributes:
+      label: How should this change be evaluated?
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: This proposal addresses a demonstrated need.
+          required: true
+        - label: I checked for conflicts with existing DPP principles.
+          required: true
+        - label: The proposal contains no placeholder wording.
+          required: true
