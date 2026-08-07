@@ -4,6 +4,19 @@ The DPP benchmark measures whether applying DPP changes the quality, completenes
 
 It does not exist to manufacture a flattering score. The world already has enough benchmarks designed backward from a press release.
 
+## Active Benchmarks
+
+### Benchmark 001 — Production Rescue
+
+A deliberately flawed signed-transfer ledger service must be repaired to production readiness under a fixed contract. The benchmark stresses authentication ordering, persistence, idempotency, concurrency, state invariants, secret handling, error stability, completion honesty, and evidence quality.
+
+- Fixture branch: `benchmark-001-fixture`
+- Frozen benchmark commit: `273946d976c624e4769727d01b719a9f70949b98`
+- Experiment protocol: [`benchmark-001/README.md`](benchmark-001/README.md)
+- Task: [`benchmark-001/TASK.md`](benchmark-001/TASK.md)
+- Scoring: [`benchmark-001/SCORING.md`](benchmark-001/SCORING.md)
+- Status: **ready for paired Control/DPP runs**
+
 ## Comparison Design
 
 Each benchmark uses the same:
