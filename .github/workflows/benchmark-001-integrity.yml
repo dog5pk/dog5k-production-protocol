@@ -1,0 +1,49 @@
+name: Benchmark 001 integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "benchmarks/benchmark-001/**"
+      - ".github/workflows/benchmark-001-integrity.yml"
+  workflow_dispatch:
+
+jobs:
+  baseline-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test runner
+        run: python -m pip install --disable-pip-version-check pytest
+
+      - name: Public tests must pass on the flawed fixture
+        working-directory: benchmarks/benchmark-001/fixture
+        run: pytest -q
+
+      - name: Withheld evaluator must reject the flawed fixture
+        run: |
+          set +e
+          pytest -q benchmarks/benchmark-001/evaluator/test_contract.py
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "ERROR: baseline passed the withheld evaluator; benchmark no longer discriminates."
+            exit 1
+          fi
+          echo "Expected: frozen flawed baseline is rejected by withheld evaluator."
+
+      - name: Verify frozen branch does not contain evaluator material
+        run: |
+          git fetch origin benchmark-001-fixture
+          if git ls-tree -r --name-only origin/benchmark-001-fixture | grep -E '^benchmarks/benchmark-001/(evaluator/|SEEDED_DEFECTS.md|SCORING.md|README.md)$'; then
+            echo "ERROR: evaluator/scoring material leaked onto frozen fixture branch."
+            exit 1
+          fi
+
+      - name: Verify recorded fixture freeze commit exists
+        run: git cat-file -e 273946d976c624e4769727d01b719a9f70949b98^{commit}
