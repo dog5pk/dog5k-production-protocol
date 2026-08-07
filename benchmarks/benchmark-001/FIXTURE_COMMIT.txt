@@ -1,0 +1,2 @@
+Fixture contents frozen after commit 239fe444315d4cc02abbe168b6379d8496c4e51b.
+Control and DPP runs must begin from the benchmark-001-fixture branch created from this state.
