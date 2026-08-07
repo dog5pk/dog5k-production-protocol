@@ -7,7 +7,7 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle, KeepTogether, ListFlowable, ListItem, Preformatted
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle, ListFlowable, ListItem, Preformatted
 
 SRC = Path(sys.argv[1] if len(sys.argv)>1 else 'whitepaper/DPP-Whitepaper-v1.0.md')
 OUT = Path(sys.argv[2] if len(sys.argv)>2 else 'site/DPP-Whitepaper-v1.0.pdf')
@@ -56,16 +56,25 @@ story += [Spacer(1,1.25*inch), Paragraph('THE DOG5PK PRODUCTION PROTOCOL', cover
 meta = '<b>Whitepaper Version:</b> 1.0<br/><b>Protocol Baseline:</b> DPP v1.3<br/><b>Author:</b> Dog5pk<br/><b>Status:</b> Public Whitepaper<br/><b>Date:</b> August 2026<br/><b>License:</b> CC BY 4.0'
 story += [Paragraph(meta, cover_meta), Spacer(1,0.48*inch), Paragraph('<i>Reality is the benchmark. Finished work is the objective.</i>', cover_sub), Spacer(1,0.25*inch), Paragraph('<b>STEP FORWARD OR STEP ASIDE.</b>', cover_meta), PageBreak()]
 
-# static TOC from numbered top-level headings
 heads=[]
 for ln in text.splitlines():
-    m=re.match(r'^## (\d+\. .+)$',ln)
-    if m: heads.append(m.group(1))
+    if ln == '## Abstract' or re.match(r'^## \d+\. ', ln) or ln.startswith('## Appendix '):
+        heads.append(ln[3:])
 story += [Paragraph('Contents', h1)]
-for x in heads: story.append(Paragraph(inline(x), ParagraphStyle('toc',parent=body,fontSize=9,leading=12,leftIndent=8,spaceAfter=2)))
+toc_style = ParagraphStyle('toc',parent=body,fontSize=9,leading=12,leftIndent=8,spaceAfter=2)
+for x in heads:
+    story.append(Paragraph(inline(x), toc_style))
 story.append(PageBreak())
 
-lines=text.splitlines(); i=0; in_code=False; codebuf=[]; bullets=[]; nums=[]
+lines=text.splitlines()
+# Skip Markdown title/subtitle/metadata already represented by the cover.
+start=0
+for idx, ln in enumerate(lines):
+    if ln.strip() == '---':
+        start = idx + 1
+        break
+lines = lines[start:]
+i=0; in_code=False; codebuf=[]; bullets=[]; nums=[]
 def flush_lists():
     global bullets, nums
     if bullets:
@@ -83,7 +92,11 @@ while i<len(lines):
     if in_code: codebuf.append(ln); i+=1; continue
     if not ln or ln=='---': flush_lists(); i+=1; continue
     if ln.startswith('# '): i+=1; continue
-    if ln.startswith('## '): flush_lists(); story.append(Paragraph(inline(ln[3:]),h1)); i+=1; continue
+    if ln.startswith('## '):
+        flush_lists()
+        if ln.startswith('## Appendix A:'):
+            story.append(PageBreak())
+        story.append(Paragraph(inline(ln[3:]),h1)); i+=1; continue
     if ln.startswith('### '): flush_lists(); story.append(Paragraph(inline(ln[4:]),h2)); i+=1; continue
     if ln.startswith('> '): flush_lists(); story.append(Paragraph(inline(ln[2:]),quote)); i+=1; continue
     if ln.startswith('|') and i+1<len(lines) and lines[i+1].startswith('|'):
@@ -97,7 +110,6 @@ while i<len(lines):
     m=re.match(r'^\d+\. (.+)$',ln)
     if m: nums.append(m.group(1)); i+=1; continue
     flush_lists()
-    # collect paragraph continuation lines
     para=[ln]; i+=1
     while i<len(lines) and lines[i].strip() and not re.match(r'^(#{1,3} |---$|> |```|\|)',lines[i]) and not re.match(r'^(- |\d+\. )',lines[i]):
         para.append(lines[i].strip()); i+=1
@@ -106,5 +118,5 @@ flush_lists()
 
 OUT.parent.mkdir(parents=True,exist_ok=True)
 doc=SimpleDocTemplate(str(OUT), pagesize=LETTER, rightMargin=0.72*inch,leftMargin=0.72*inch,topMargin=0.7*inch,bottomMargin=0.72*inch,title='Dog5pk Production Protocol Whitepaper v1.0',author='Dog5pk',subject='DPP v1.3 production standard for dependable human-AI collaboration')
-doc.build(story,onFirstPage=footer,onLaterPages=footer)
+doc.build(story,onFirstPage=lambda canvas, doc: None,onLaterPages=footer)
 print(OUT)
