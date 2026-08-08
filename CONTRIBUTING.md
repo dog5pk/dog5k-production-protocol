@@ -7,7 +7,7 @@ DPP improves through evidence, operational experience, and reproducible defects.
 - Contradictions or ambiguities with concrete examples.
 - Reproducible failures in real human-AI workflows.
 - Proposed wording that closes a demonstrated loophole.
-- Benchmark results comparing identical tasks with and without DPP.
+- Independent benchmark results comparing identical tasks with and without DPP.
 - Corrections to formatting, grammar, links, or cross-references.
 - Adoption guidance supported by practical use.
 
@@ -38,11 +38,24 @@ Pull requests should address one coherent change and must:
 - contain no placeholders, fake examples, invented results, or decorative files; and
 - pass link, formatting, and consistency review.
 
-## Benchmarks
+## Independent Benchmark Submissions
 
-Benchmark submissions must follow `benchmarks/README.md` and use `benchmarks/TEMPLATE.md`. Raw prompts and outputs must be preserved exactly except for documented redactions required for privacy or safety.
+Use [`BENCHMARKS.md`](BENCHMARKS.md) as the governing method.
 
-Anecdotes may motivate a benchmark. They are not benchmark results.
+A valid benchmark submission must preserve the paired comparison and include:
+
+- AI platform and model/version information when available;
+- date of the test;
+- complete Control output;
+- complete DPP output;
+- scoring rubric;
+- Control and DPP scores;
+- observed weaknesses or failures in either condition; and
+- disclosure of retries, interruptions, tool use, contamination, or other conditions that could affect the result.
+
+The benchmark task itself may remain private, but the submitter must state that both conditions received the exact same task.
+
+Results are accepted whether DPP wins, ties, loses, or the comparison is inconclusive. Selective reporting is not acceptable.
 
 ## Editorial Corrections
 
