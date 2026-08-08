@@ -8,6 +8,8 @@ Use the **Reader Edition** when studying, reviewing, teaching, or citing DPP.
 
 Use the **Operational Edition** when supplying DPP directly to an AI system as working instructions.
 
+The current public release is **DPP v1.4**.
+
 ## Minimum Task Brief
 
 Provide the AI system with:
@@ -21,7 +23,7 @@ Provide the AI system with:
 ## Reusable Task Wrapper
 
 ```text
-Apply the Dog5pk Production Protocol v1.3 Operational Edition to this task.
+Apply the Dog5pk Production Protocol v1.4 Operational Edition to this task.
 
 Objective:
 [State the required finished result.]
@@ -38,13 +40,13 @@ Completion criteria:
 Verification:
 [State how important claims and outputs will be checked.]
 
-Do the work rather than merely explaining how it could be done. Before claiming completion, perform the DPP Production Acceptance Check and disclose any exact blocker or unresolved limitation.
+Do the work rather than merely explaining how it could be done. Before claiming completion, perform DPP Compliance Verification and the Production Acceptance Check. Distinguish Implemented from Verified work, and disclose any exact blocker or unresolved limitation.
 ```
 
 ## Example
 
 ```text
-Apply DPP v1.3 to produce a deployable one-page website.
+Apply DPP v1.4 to produce a deployable one-page website.
 
 Objective:
 Create a responsive static landing page that explains a public technical standard and links to its documentation.
@@ -61,6 +63,17 @@ The repository contains the finished page, it renders at 360 px and desktop widt
 Verification:
 Inspect the files, validate links, and report the exact checks performed.
 ```
+
+## Compliance Verification
+
+Before accepting a completion claim, check the actual record rather than the system's confidence about its own behavior:
+
+- Did the requested artifact actually get produced?
+- Were the stated verification steps actually performed?
+- Did the system expand scope or authority without permission?
+- Were binding constraints or established decisions weakened or silently changed?
+- Are tests, tool calls, inspections, searches, corrections, and draft history reported only when they actually occurred?
+- Is the result accurately classified as **Implemented**, **Verified**, **Verified with limitations**, or **Blocked** when that distinction matters?
 
 ## Final Review
 
