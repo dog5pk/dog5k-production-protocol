@@ -1,0 +1,125 @@
+name: Independent benchmark result
+description: Submit a paired Control vs. DPP benchmark result
+title: "[Benchmark] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit the result as it fell. Wins, ties, losses, and inconclusive results are all valid evidence.
+
+  - type: input
+    id: benchmark
+    attributes:
+      label: Benchmark number or identifier
+      placeholder: "002"
+    validations:
+      required: true
+
+  - type: input
+    id: platform
+    attributes:
+      label: AI platform
+      placeholder: "Claude, ChatGPT, Gemini, DeepSeek, local model, etc."
+    validations:
+      required: true
+
+  - type: input
+    id: model
+    attributes:
+      label: Model and displayed version/build
+      description: Enter exactly what the platform showed, if available.
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Test date
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: controls
+    attributes:
+      label: Pair integrity
+      options:
+        - label: Both runs used fresh conversations.
+          required: true
+        - label: Both runs received the exact same task.
+          required: true
+        - label: Both runs used the same platform/model.
+          required: true
+        - label: The Control run did not receive DPP.
+          required: true
+        - label: The DPP run received DPP before the task.
+          required: true
+        - label: I am submitting the first completed output from each condition, except for any technical failure disclosed below.
+          required: true
+
+  - type: textarea
+    id: rubric
+    attributes:
+      label: Scoring rubric
+      description: Paste the rubric used for both conditions.
+    validations:
+      required: true
+
+  - type: input
+    id: control_score
+    attributes:
+      label: Control score
+    validations:
+      required: true
+
+  - type: input
+    id: dpp_score
+    attributes:
+      label: DPP score
+    validations:
+      required: true
+
+  - type: textarea
+    id: control_output
+    attributes:
+      label: Complete Control output
+      description: Paste the full result exactly as returned. If too large, link to a stable raw artifact and explain why.
+    validations:
+      required: true
+
+  - type: textarea
+    id: dpp_output
+    attributes:
+      label: Complete DPP output
+      description: Paste the full result exactly as returned. If too large, link to a stable raw artifact and explain why.
+    validations:
+      required: true
+
+  - type: textarea
+    id: observations
+    attributes:
+      label: Observed differences and failures
+      description: Include weaknesses in both conditions, not only DPP improvements.
+    validations:
+      required: true
+
+  - type: textarea
+    id: deviations
+    attributes:
+      label: Retries, interruptions, tools, contamination, or other deviations
+      description: Write "None" if none occurred.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: Publication integrity
+      options:
+        - label: I have not removed embarrassing mistakes from either output.
+          required: true
+        - label: I understand that a DPP loss or tie is a valid result and should not be hidden.
+          required: true
+        - label: I have not changed the scoring criteria after seeing which condition performed better.
+          required: true
