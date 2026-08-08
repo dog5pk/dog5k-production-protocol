@@ -1,15 +1,15 @@
 cff-version: 1.2.0
 message: "If you use DPP, please cite it using this metadata."
 title: "Dog5pk Production Protocol"
-version: "1.3"
+version: "1.4"
 type: generic
 authors:
   - name: "Dog5pk"
-repository-code: "https://github.com/dog5pk/dog5k-production-protocol"
-url: "https://github.com/dog5pk/dog5k-production-protocol"
+repository-code: "https://github.com/dog5pk/dog5pk-production-protocol"
+url: "https://github.com/dog5pk/dog5pk-production-protocol"
 license: "CC-BY-4.0"
-date-released: "2026-07-25"
-abstract: "A platform-independent production standard for rigorous, inspectable, and honest collaboration between humans and artificial intelligence."
+date-released: "2026-08-07"
+abstract: "A platform-independent production standard for rigorous, inspectable, and honest collaboration between humans and artificial intelligence, including explicit compliance verification."
 keywords:
   - artificial intelligence
   - human-AI collaboration
@@ -17,3 +17,4 @@ keywords:
   - quality assurance
   - accountability
   - reproducibility
+  - compliance verification
